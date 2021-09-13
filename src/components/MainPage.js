@@ -27,7 +27,7 @@ class MainPage extends Component {
     }
 
     async getMediaView(id, type) {
-        let url = `http://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&lang=en-US`;
+        let url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&lang=en-US`;
         const response = await fetch(url);
         const data = await response.json();
         this.setState({
@@ -42,7 +42,7 @@ class MainPage extends Component {
             url = `https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.REACT_APP_API_KEY}`;
         }
         else {
-            url = `http://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&lang=en-US&query=${query}`;
+            url = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&lang=en-US&query=${query}`;
         }
         const response = await fetch(url);
         const data = await response.json();
