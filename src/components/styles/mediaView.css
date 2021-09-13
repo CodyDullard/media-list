@@ -1,0 +1,33 @@
+body {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#view-container {
+    display:flex;
+    position: center;
+    margin:auto;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 10px;
+    margin: 10;
+    width: 80%;
+}
+
+#poster-container {
+    width: 100%;
+    padding: 20px;
+}
+
+#text-comtainer {
+    display: block;
+}
+
+.special-text {
+    color: #34568B;
+}
+
+@media screen and (max-width: 400px) {
+    
+}
