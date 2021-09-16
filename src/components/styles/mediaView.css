@@ -28,6 +28,24 @@ body {
     color: #34568B;
 }
 
+button {
+    color: white;
+    background-color: #34568B;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 26px;
+    border: none;
+    display: flex;
+    float: left;
+}
+
+button:active {
+    color: black;
+    background-color: white;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
 @media screen and (max-width: 400px) {
     
 }

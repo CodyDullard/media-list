@@ -5,12 +5,16 @@ let backdrop;
 class MediaView extends Component {
     render() {
         return (
-            <DisplayMediaData media={this.props.data}/>
+            <DisplayMediaData media={this.props.data} onClick={this.onClick}/>
         )
     }
 
     componentDidMount() {
         document.body.style.backgroundImage = 'url(' + backdrop + ')';
+    }
+
+    onClick = () => {
+        this.props.swapView();
     }
 }
 
@@ -24,6 +28,9 @@ function DisplayMediaData(props) {
         const revenue = (media.revenue !== 0) ? "$" + media.revenue.toLocaleString() : "no info availiable";
         return (
             <div id='view-container'>
+                <div id="button-container">
+                    <button className="button" onClick={props.onClick} aria-label="back to search page">Back</button>
+                </div>
                 <div id='poster-container'>
                     <img alt='The movie poster for the current movie' id='poster' src={poster}/>
                 </div>
@@ -47,6 +54,9 @@ function DisplayMediaData(props) {
         const createdBy = (media.created_by.length > 0) ? extractStrings(media.created_by) : "no info available";
         return (
             <div id='view-container'>
+                <div id="button-container">
+                    <button className="button" onClick={props.onClick}>Back</button>
+                </div>
                 <div id='poster-container'>
                     <img alt='The movie poster for the current movie' id='poster' src={poster}/>
                 </div>
