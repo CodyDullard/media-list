@@ -14,16 +14,31 @@ class MainPage extends Component {
         }
 
         this.search = this.search.bind(this)
+        this.swapView = this.swapView.bind(this)
     }
 
     render() {
         return (
             <div>
                 <SearchView search= { this.search }/>
-                <CurView view={this.state.view} table={this.state.table} mediaData={this.state.mediaData}/>
+                <CurView view={this.state.view} table={this.state.table} mediaData={this.state.mediaData} swapView={this.swapView}/>
             </div>
             
         )
+    }
+
+    swapView() {
+        const view = this.state.view;
+        if (view === "search") {
+            this.setState({
+                view: "media"
+            })
+        }
+        else {
+            this.setState({
+                view: "search"
+            })
+        }
     }
 
     async getMediaView(id, type) {
@@ -31,9 +46,9 @@ class MainPage extends Component {
         const response = await fetch(url);
         const data = await response.json();
         this.setState({
-            view: "media",
             mediaData: data
         })
+        this.swapView();
     }
 
     async getMedia(query) {
@@ -61,7 +76,7 @@ class MainPage extends Component {
         for (let item of media) {
             const poster = `https://image.tmdb.org/t/p/w500/${item.poster_path}`;
             const altText = (item.title !== undefined) ? item.title : item.name;
-            curRow.push(<td><img alt={altText} role="button" src={poster} onClick={() => this.getMediaView(item.id, item.media_type)}/></td>)
+            curRow.push(<td><img alt={altText} role="button" tabIndex="0" src={poster} onClick={() => this.getMediaView(item.id, item.media_type)}/></td>)
             count++;
             if (count === 4) {
                 rows.push(<tr>{curRow}</tr>)
@@ -111,7 +126,7 @@ function CurView(props) {
         )
     }
     else {
-        return( <MediaView data={props.mediaData}/> )
+        return( <MediaView data={props.mediaData} swapView={props.swapView}/> )
     }
 }
 
